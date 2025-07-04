@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { INITIAL_CODE } from './constants';
-import { getAiResponseStream } from './services/geminiService.ts';
+import { getAiResponseStream } from './services/geminiService';
 import { Header } from './components/Header';
 import { InputView } from './components/InputView';
 import { OutputView } from './components/OutputView';
