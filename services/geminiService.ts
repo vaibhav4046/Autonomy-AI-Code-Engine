@@ -2,11 +2,20 @@
 import { GoogleGenAI } from "@google/genai";
 import { SYSTEM_PROMPT, userPromptTemplate } from '../constants';
 
-if (!process.env.API_KEY) {
-  throw new Error("API_KEY environment variable not set");
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+if (!apiKey) {
+  throw new Error("VITE_GEMINI_API_KEY environment variable not set");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey });
+
+declare global {
+  interface ImportMeta {
+    env: {
+      VITE_GEMINI_API_KEY: string;
+    };
+  }
+}
 
 export async function* getAiResponseStream(
   prompt: string, 
